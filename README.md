@@ -93,6 +93,47 @@ npm run dev
 
 ---
 
+## Dev tooling & CI (added)
+
+I added recommended developer tooling and GitHub workflows to make CI/CD and local development consistent:
+
+- ESLint + Prettier for linting & formatting
+- Vitest for lightweight tests
+- Husky + lint-staged for pre-commit checks
+- GitHub Actions CI (lint, format-check, tests, build)
+- CodeQL security scanning and Dependabot weekly updates
+
+How to run locally:
+
+```bash
+# install deps (use npm install to regenerate lockfile if needed)
+npm install
+
+# run dev server
+npm run dev
+
+# run lint
+npm run lint
+
+# run format
+npm run format
+
+# run tests
+npm run test
+```
+
+CI behavior (what the workflow runs):
+
+- Uses Node 18 & 20 matrix
+- Installs dependencies (tries `npm ci`, falls back to `npm install`)
+- Runs lint (ESLint + TypeScript check)
+- Runs Prettier check
+- Runs tests with coverage
+- Builds the app with Vite
+
+
+---
+
 ## 🗄 Prisma PostgreSQL Schema Model
 
 ```prisma
