@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  routineos:
+    image: node:20-alpine
+    container_name: routineos_app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - APP_URL=${APP_URL}
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/routineos?schema=public
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "npm install && npm run build && npm start"
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    container_name: routineos_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=routineos
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

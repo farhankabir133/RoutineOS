@@ -1,0 +1,6 @@
+{
+  "name": "RoutineOS",
+  "description": "An open-source productivity operating system to organize tasks, track habits, design routines, focus with deep work sessions, plan content, save ideas, and optimize daily life.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
